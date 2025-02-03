@@ -1,0 +1,186 @@
+# Liftoff Complete Configuration Example
+# This configuration demonstrates all available features and options
+
+# Package Management
+# ------------------
+packages:
+  # Chocolatey packages to install
+  chocolatey:
+    - 7zip
+    - git
+    - vscode
+    - nodejs
+    - python
+    - docker-desktop
+    - firefox
+    - chrome
+    - postman
+    - winrar
+    - notepadplusplus
+    - powertoys
+    - microsoft-windows-terminal
+
+# System Configuration
+# ------------------
+system:
+  # Enable/disable dark mode
+  dark_mode: true
+
+  # Folders to create
+  folders:
+    - "${USERPROFILE}/Documents/Projects"
+    - "${USERPROFILE}/Documents/Scripts"
+    - "${USERPROFILE}/Documents/Workspace"
+    - "${USERPROFILE}/Tools"
+    - "${USERPROFILE}/.config"
+    - "${USERPROFILE}/.local/bin"
+    - "${USERPROFILE}/Downloads/Temp"
+
+  # Files to create with content
+  files:
+    "${USERPROFILE}/Documents/Scripts/readme.md": |
+      # Scripts Directory
+      Collection of development and automation scripts.
+      Created by liftoff configuration.
+    "${USERPROFILE}/.config/readme.md": |
+      # Config Directory
+      Store configuration files for development tools.
+      Created by liftoff configuration.
+    "${USERPROFILE}/Documents/Projects/readme.md": |
+      # Projects Directory
+      Main directory for all development projects.
+      
+      ## Structure
+      - web/      : Web development projects
+      - mobile/   : Mobile app projects
+      - tools/    : Development tools and utilities
+
+  # Registry modifications
+  registry:
+    - root: "HKCU"
+      path: "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"
+      name: "AppsUseLightTheme"
+      type: "dword"
+      value: 0
+    - root: "HKCU"
+      path: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced"
+      name: "HideFileExt"
+      type: "dword"
+      value: 0
+    - root: "HKCU"
+      path: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced"
+      name: "ShowStatusBar"
+      type: "dword"
+      value: 1
+
+# Environment Configuration
+# -----------------------
+environment:
+  # Variables to add/modify
+  variables:
+    JAVA_HOME: "C:/Program Files/Java/jdk-17"
+    GOLANG_HOME: "C:/Go"
+    PYTHON_HOME: "${USERPROFILE}/AppData/Local/Programs/Python/Python39"
+    MAVEN_HOME: "${USERPROFILE}/Tools/apache-maven"
+    EDITOR: "code"
+    VISUAL: "code"
+
+  # Paths to append to PATH variable
+  path_append:
+    - "%JAVA_HOME%/bin"
+    - "%GOLANG_HOME%/bin"
+    - "%PYTHON_HOME%"
+    - "%PYTHON_HOME%/Scripts"
+    - "%MAVEN_HOME%/bin"
+    - "${USERPROFILE}/.local/bin"
+    - "${USERPROFILE}/Tools"
+
+# WSL Configuration
+# ---------------
+wsl:
+  # Default distribution
+  default_distro: "Ubuntu"
+  
+  # Distributions to install
+  distributions:
+    - name: "Ubuntu"
+      version: "latest"
+    - name: "Debian"
+      version: "latest"
+
+# Download Configuration
+# --------------------
+downloads:
+  files:
+    - url: "https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-windows-amd64.exe"
+      dest: "${USERPROFILE}/Tools/oh-my-posh.exe"
+      sha256: "ACTUAL_SHA256_HERE" # Replace with actual SHA256
+    - url: "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x64.msi"
+      dest: "${USERPROFILE}/Downloads/Temp/pwsh.msi"
+      rename: "powershell7.msi"
+
+# Network Configuration
+# -------------------
+network:
+  # DNS servers
+  dns_servers:
+    - "1.1.1.1"
+    - "1.0.0.1"
+    - "8.8.8.8"
+    - "8.8.4.4"
+
+  # Hosts file entries
+  hosts_entries:
+    "localhost.dev": "127.0.0.1"
+    "test.local": "127.0.0.1"
+    "dev.local": "127.0.0.1"
+
+  # Proxy configuration
+  proxy:
+    enable: false
+    server: "proxy.company.com"
+    port: 8080
+    username: "proxyuser"
+    password: "proxypass"
+
+# File Associations
+# ---------------
+file_associations:
+  associations:
+    .txt: "C:/Program Files/Notepad++/notepad++.exe"
+    .md: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .json: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .yml: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .yaml: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .js: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .py: "${USERPROFILE}/AppData/Local/Programs/Python/Python39/python.exe"
+    .go: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .rs: "${USERPROFILE}/AppData/Local/Programs/Microsoft VS Code/Code.exe"
+    .log: "C:/Program Files/Notepad++/notepad++.exe"
+
+# Git Configuration
+# ---------------
+git:
+  repositories:
+    # Microsoft Terminal - Example of a shallow clone
+    - url: "https://github.com/microsoft/terminal"
+      path: "${USERPROFILE}/Documents/Projects/terminal"
+      branch: "main"
+      depth: 1
+
+    # Rust - Example of a full clone with specific branch
+    - url: "https://github.com/rust-lang/rust"
+      path: "${USERPROFILE}/Documents/Projects/rust"
+      branch: "master"
+      depth: 1
+
+    # Example with submodules
+    - url: "https://github.com/neovim/neovim"
+      path: "${USERPROFILE}/Documents/Projects/neovim"
+      branch: "master"
+      submodule_init: true
+
+    # Your own projects
+    - url: "https://github.com/yourusername/project1"
+      path: "${USERPROFILE}/Documents/Projects/personal/project1"
+      branch: "develop"
