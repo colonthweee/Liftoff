@@ -27,3 +27,5 @@ Liftoff is a powerful Windows system configuration tool that automates the setup
 1. Download the latest release from the [releases page](https://github.com/colonthweee/liftoff/releases)
 2. Place the executable in your desired location
 3. (Optional) Add the location to your PATH
+
+Please make a Pull Request or Issue if you face any issues/wanna add anythingg :DDD
